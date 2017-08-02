@@ -10,7 +10,7 @@ import Header from './Header';
 // }
 
 const App = () => (
-  <Header>piyo</Header>
+  <Header />
 );
 
 export default App;
