@@ -9,8 +9,10 @@ import Header from './Header';
 //   }
 // }
 
+const headers = ['タイトル', '著者', '言語', '出版年', '売り上げ部数'];
+
 const App = () => (
-  <Header />
+  <Header headers={headers} />
 );
 
 export default App;
