@@ -9757,16 +9757,10 @@ module.exports = getIteratorFn;
 
 
 
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <h1>fuga</h1>
-//     );
-//   }
-// }
+var headers = ['タイトル', '著者', '言語', '出版年', '売り上げ部数'];
 
 var App = function App() {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Header__["a" /* default */], null);
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Header__["a" /* default */], { headers: headers });
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (App);
@@ -9788,13 +9782,9 @@ module.exports = __webpack_require__(116);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _this = this;
 
 
-
-var headers = ['タイトル', '著者', '言語', '出版年', '売り上げ部数'];
-
-var Header = function Header() {
+var Header = function Header(props) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'table',
     null,
@@ -9807,14 +9797,22 @@ var Header = function Header() {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'th',
           null,
-          _this.props.headers
+          props.headers.map(function (element, index) {
+            console.log(element, index);
+          })
         )
       )
     )
   );
 };
 
-Header.defaultProps = headers;
+Header.propTypes = {
+  headers: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.arrayOf(__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string)
+};
+
+Header.defaultProps = {
+  headers: []
+};
 
 /* harmony default export */ __webpack_exports__["a"] = (Header);
 

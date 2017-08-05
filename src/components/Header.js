@@ -1,39 +1,23 @@
 import React from 'react';
 
-// export default class Header extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return (
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>{this.props.headers}</th>
-//           </tr>
-//         </thead>
-//       </table>
-//     );
-//   }
-// }
-
 const Header = props => (
   <table>
     <thead>
       <tr>
-        <th>{props.headers}</th>
+        {props.headerItems.map(headerItems => (
+          <th key={headerItems.index}>{headerItems.title}</th>
+        ))}
       </tr>
     </thead>
   </table>
 );
 
 Header.propTypes = {
-  headers: React.PropTypes.arrayOf(React.PropTypes.string),
+  headerItems: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 Header.defaultProps = {
-  headers: [],
+  headerItems: [],
 };
 
 export default Header;
