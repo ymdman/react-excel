@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Header = props => (
-  <table>
+  <table className="table">
     <thead>
       <tr>
         {props.headerItems.map(headerItems => (
