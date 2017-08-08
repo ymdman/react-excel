@@ -1,9 +1,10 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    bundle: './src/main.js',
   },
 
   output: {
@@ -20,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
             'css-loader',
@@ -32,22 +33,7 @@ module.exports = {
   },
 
   plugins: [
-     new ExtractTextPlugin('bundle.css'),
-     new webpack.LoaderOptionsPlugin({
-       options: {
-         postcss: [
-           require('postcss-easy-import')({ glob: true }),
-           // require('postcss-import'),
-           require('autoprefixer')({
-             browsers: ['last 2 versions'],
-           }),
-         ],
-       },
-     }),
-    //  new StyleLintPlugin({
-    //     files: ['src/components/**/*.css', '!src/styles/normalize.css'],
-    //     configFile: '.stylelintrc',
-    //  }),
+    new ExtractTextPlugin('bundle.css'),
   ],
 
   devServer: {
