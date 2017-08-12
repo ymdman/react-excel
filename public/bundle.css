@@ -430,4 +430,5 @@ template {
   margin: auto;
   padding: 2px;
   background: #fff;
+  overflow: hidden;
 }
