@@ -21,11 +21,13 @@ export default class Table extends React.Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {this.props.tableData.map(tableData => (
-              <td key={tableData.index}>{tableData.data}</td>
-            ))}
-          </tr>
+          {this.state.tableData.map(tableData => (
+            <tr key={tableData.index}>
+              {tableData.data.map(data => (
+                <td key={data}>{data}</td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
