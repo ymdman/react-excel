@@ -22396,14 +22396,16 @@ module.exports = ReactDOMInvalidARIAHook;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Header__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Table__ = __webpack_require__(185);
 
 
 
 var headerItems = [{ title: 'タイトル', index: 0 }, { title: '著者', index: 1 }, { title: '言語', index: 2 }, { title: '出版年', index: 3 }, { title: '売り上げ部数', index: 4 }];
 
+var tableData = [{ data: ['The Lord of the Rings', 'J. R. R. Tolkien', 'English', '1954-1955', '150 million'], index: 0 }, { data: ['Le Petit Prince (The Little Prince)', 'Antoine de Saint-Exupéry', 'French', '1943', '140 million'], index: 1 }, { data: ['Harry Potter and the Philosophers Stone', 'J. K. Rowling', 'English', '1997', '107 million'], index: 2 }, { data: ['And Then There Were None', 'Agatha Christie', 'English', '1939', '100 million'], index: 3 }, { data: ['Dream of the Red Chamber', 'Cao Xueqin', 'Chinese', '1754-1791', '100 million'], index: 4 }, { data: ['The Hobbit', 'J. R. R. Tolkien', 'English', '1937', '100 million'], index: 5 }, { data: ['She: A History of Adventure', 'H. Rider Haggard', 'English', '1887', '100 mixllio'], index: 6 }];
+
 var App = function App() {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Header__["a" /* default */], { headerItems: headerItems });
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Table__["a" /* default */], { headerItems: headerItems, tableData: tableData });
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (App);
@@ -22415,39 +22417,87 @@ var App = function App() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
-var Header = function Header(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-    "table",
-    { className: "table" },
-    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      "thead",
-      null,
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "tr",
-        null,
-        props.headerItems.map(function (headerItems) {
-          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "th",
-            { key: headerItems.index },
-            headerItems.title
-          );
-        })
-      )
-    )
-  );
+
+var Table = function (_React$Component) {
+  _inherits(Table, _React$Component);
+
+  function Table(props) {
+    _classCallCheck(this, Table);
+
+    var _this = _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, props));
+
+    _this.state = {
+      tableData: _this.props.tableData
+    };
+    return _this;
+  }
+
+  _createClass(Table, [{
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "table",
+        { className: "table" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "thead",
+          null,
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "tr",
+            null,
+            this.props.headerItems.map(function (headerItems) {
+              return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "th",
+                { key: headerItems.index },
+                headerItems.title
+              );
+            })
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "tbody",
+          null,
+          this.state.tableData.map(function (tableData) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "tr",
+              { key: tableData.index },
+              tableData.data.map(function (data) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                  "td",
+                  { key: data },
+                  data
+                );
+              })
+            );
+          })
+        )
+      );
+    }
+  }]);
+
+  return Table;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (Table);
+
+
+Table.propTypes = {
+  headerItems: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.arrayOf(__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.object),
+  tableData: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.arrayOf(__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.object)
 };
 
-Header.propTypes = {
-  headerItems: __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.arrayOf(__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.object)
+Table.defaultProps = {
+  headerItems: [],
+  tableData: []
 };
-
-Header.defaultProps = {
-  headerItems: []
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Header);
 
 /***/ }),
 /* 186 */

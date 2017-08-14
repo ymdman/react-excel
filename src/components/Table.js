@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default class Table extends React.Component {
+  static sort() {
+    console.log('hgoe');
+  }
+
   constructor(props) {
     super(props);
 
@@ -9,14 +13,15 @@ export default class Table extends React.Component {
     };
   }
 
-
   render() {
     return (
       <table className="table">
         <thead>
           <tr>
             {this.props.headerItems.map(headerItems => (
-              <th key={headerItems.index}>{headerItems.title}</th>
+              <th key={headerItems.index}>
+                <button onClick={this.constructor.sort}>{headerItems.title}</button>
+              </th>
             ))}
           </tr>
         </thead>

@@ -426,9 +426,7 @@ template {
   display: none;
 }
 
-.hoge {
-  margin: auto;
-  padding: 2px;
-  background: #fff;
-  overflow: hidden;
+.table {
+  border: solid 1px #ccc;
+  padding: 10px;
 }
