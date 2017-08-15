@@ -1,34 +1,44 @@
 import React from 'react';
 
 export default class Table extends React.Component {
-  static sort() {
-    console.log('hgoe');
-  }
-
   constructor(props) {
     super(props);
 
+    this.sort = this.sort.bind(this);
     this.state = {
       tableData: this.props.tableData,
     };
   }
 
+  sort(e) {
+    const column = e.target.cellIndex;
+    const tableData = this.state.tableData.slice();
+
+    tableData.sort((a, b) => {
+      const data = a[column] > b[column] ? 1 : -1;
+
+      return data;
+    });
+
+    this.setState({ tableData });
+  }
+
   render() {
     return (
-      <table className="table">
+      <table className="table" role="grid">
         <thead>
           <tr>
             {this.props.headerItems.map(headerItems => (
-              <th key={headerItems.index}>
-                <button onClick={this.constructor.sort}>{headerItems.title}</button>
+              <th key={headerItems} onClick={this.sort} role="gridcell">
+                {headerItems}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {this.state.tableData.map(tableData => (
-            <tr key={tableData.index}>
-              {tableData.data.map(data => (
+            <tr key={tableData}>
+              {tableData.map(data => (
                 <td key={data}>{data}</td>
               ))}
             </tr>
@@ -40,8 +50,8 @@ export default class Table extends React.Component {
 }
 
 Table.propTypes = {
-  headerItems: React.PropTypes.arrayOf(React.PropTypes.object),
-  tableData: React.PropTypes.arrayOf(React.PropTypes.object),
+  headerItems: React.PropTypes.arrayOf(React.PropTypes.string),
+  tableData: React.PropTypes.arrayOf(React.PropTypes.array),
 };
 
 Table.defaultProps = {
