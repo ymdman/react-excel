@@ -7,20 +7,33 @@ export default class Table extends React.Component {
     this.sort = this.sort.bind(this);
     this.state = {
       tableData: this.props.tableData,
+      sortBy: null,
+      descending: false,
     };
   }
 
   sort(e) {
     const column = e.target.cellIndex;
     const tableData = this.state.tableData.slice();
+    const descending = this.state.sortby === column && !this.state.descending;
 
     tableData.sort((a, b) => {
-      const data = a[column] > b[column] ? 1 : -1;
+      let data;
+
+      if (descending) {
+        data = (a[column] < b[column] ? 1 : -1);
+      } else {
+        data = (a[column] > b[column] ? 1 : -1);
+      }
 
       return data;
     });
 
-    this.setState({ tableData });
+    this.setState({
+      tableData,
+      sortBy: column,
+      descending,
+    });
   }
 
   render() {
@@ -28,11 +41,13 @@ export default class Table extends React.Component {
       <table className="table" role="grid">
         <thead>
           <tr>
-            {this.props.headerItems.map(headerItems => (
-              <th key={headerItems} onClick={this.sort} role="gridcell">
-                {headerItems}
-              </th>
-            ))}
+            {
+              this.props.headerItems.map(headerItems => (
+                <th key={headerItems} onClick={this.sort} role="gridcell">
+                  {headerItems}
+                </th>
+              ))
+            }
           </tr>
         </thead>
         <tbody>
