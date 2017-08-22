@@ -15,8 +15,7 @@ export default class Table extends React.Component {
   sort(e) {
     const column = e.target.cellIndex;
     const tableData = this.state.tableData.slice();
-    const descending = this.state.sortby === column && !this.state.descending;
-
+    const descending = this.state.sortBy === column && !this.state.descending;
     tableData.sort((a, b) => {
       let data;
 
@@ -41,13 +40,14 @@ export default class Table extends React.Component {
       <table className="table" role="grid">
         <thead>
           <tr>
-            {
-              this.props.headerItems.map(headerItems => (
-                <th key={headerItems} onClick={this.sort} role="gridcell">
-                  {headerItems}
-                </th>
-              ))
-            }
+            {this.props.headerItems.map((headerItems, index) => {
+              let newHeaer = headerItems;
+
+              if (this.state.sortBy === index) {
+                newHeaer += this.state.descending ? ' \u2191' : ' \u2193';
+              }
+              return <th key={newHeaer} onClick={this.sort} role="gridcell">{newHeaer}</th>;
+            })}
           </tr>
         </thead>
         <tbody>
